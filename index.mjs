@@ -75,4 +75,16 @@ function renderCells() {
   ctx.stroke();
 };
 
+canvas.addEventListener("mousedown", (event) => {
+  const rect = canvas.getBoundingClientRect();
+  const x = event.clientX - rect.left;
+  const y = event.clientY - rect.top;
+
+
+  const row = Math.floor((x - 1) / (CELL_SIZE + 1));
+  const col = Math.floor((y - 1) / (CELL_SIZE + 1));
+
+  universe.toggle(row, col);
+});
+
 main();
