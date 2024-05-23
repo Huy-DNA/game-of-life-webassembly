@@ -6,3 +6,7 @@ body {
   align-items: center;
   justify-content: center;
 }
+
+button {
+  margin: 10px;
+}
