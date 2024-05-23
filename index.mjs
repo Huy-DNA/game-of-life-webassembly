@@ -21,7 +21,7 @@ async function main() {
   const module = await wasm();
   memory = module.memory;
   
-  universe = Universe.new();
+  universe = Universe.new(height, width);
   renderLoop(universe);
 }
 
