@@ -36,12 +36,14 @@ impl Universe {
     }
     
     pub fn tick(&mut self) {
+        let mut new_cells = self.cells.clone();
         for i in 0..self.width {
             for j in 0..self.height {
                 let pos = self.get_pos(i, j);
-                self.cells[pos] = self.next_status(i, j);        
+                new_cells[pos] = self.next_status(i, j);        
             }
         }
+        self.cells = new_cells;
     }
 
     fn cur_status(&mut self, i: usize, j: usize) -> Cell {
@@ -63,7 +65,7 @@ impl Universe {
             i > 0 && j > 0 && self.cur_status(i - 1, j - 1) == Cell::Alive,
             i > 0 && j < self.height - 1 && self.cur_status(i - 1, j + 1) == Cell::Alive,
             i < self.width - 1 && j > 0 && self.cur_status(i + 1, j - 1) == Cell::Alive,
-            i < self.width - 1 && j < self.height - 1 && self.cur_status(i - 1, j - 1) == Cell::Alive,
+            i < self.width - 1 && j < self.height - 1 && self.cur_status(i + 1, j + 1) == Cell::Alive,
         ].into_iter().map(|b| b as u8).sum::<u8>();
         
         match status {
