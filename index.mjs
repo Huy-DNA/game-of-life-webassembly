@@ -49,7 +49,7 @@ const renderCells = () => {
 
   for (let row = 0; row < height; row++) {
     for (let col = 0; col < width; col++) {
-      ctx.fillStyle = universe.get_status(row, col) === Cell.Dead ? DEAD_COLOR : ALIVE_COLOR;
+      ctx.fillStyle = universe.cur_status(row, col) === Cell.Dead ? DEAD_COLOR : ALIVE_COLOR;
 
       ctx.fillRect(
         col * (CELL_SIZE + 1) + 1,

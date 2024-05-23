@@ -93,6 +93,15 @@ export class Universe {
     /**
     * @param {number} i
     * @param {number} j
+    * @returns {Cell}
+    */
+    cur_status(i, j) {
+        const ret = wasm.universe_cur_status(this.__wbg_ptr, i, j);
+        return ret;
+    }
+    /**
+    * @param {number} i
+    * @param {number} j
     */
     toggle(i, j) {
         wasm.universe_toggle(this.__wbg_ptr, i, j);

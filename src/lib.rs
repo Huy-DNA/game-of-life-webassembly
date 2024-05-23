@@ -44,7 +44,7 @@ impl Universe {
         }
     }
 
-    fn cur_status(&mut self, i: usize, j: usize) -> Cell {
+    pub fn cur_status(&mut self, i: usize, j: usize) -> Cell {
         let pos = self.get_pos(i, j);
         self.cells[pos]
     }
