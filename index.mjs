@@ -52,7 +52,8 @@ function renderCells() {
 
   for (let row = 0; row < height; ++row) {
     for (let col = 0; col < width; ++col) {
-      ctx.fillStyle = universe.cur_status(row, col) === Cell.Dead ? DEAD_COLOR : ALIVE_COLOR;
+      console.log(row, col);
+      ctx.fillStyle = ALIVE_COLOR;
 
       ctx.fillRect(
         col * (CELL_SIZE + 1) + 1,
