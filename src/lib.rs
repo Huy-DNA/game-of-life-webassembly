@@ -53,9 +53,9 @@ impl Universe {
         let status = self.cur_status(i, j);
         let num_alive = vec![
             i > 0 && self.cur_status(i - 1, j) == Cell::Alive,
-            i < self.width && self.cur_status(i + 1, j) == Cell::Alive,
+            i < self.width - 1 && self.cur_status(i + 1, j) == Cell::Alive,
             j > 0 && self.cur_status(i, j - 1) == Cell::Alive,
-            j < self.height && self.cur_status(i, j + 1) == Cell::Alive,
+            j < self.height - 1 && self.cur_status(i, j + 1) == Cell::Alive,
         ].into_iter().map(|b| b as u8).sum::<u8>();
         
         match status {
