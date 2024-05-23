@@ -1,7 +1,7 @@
 import wasm from "./wasm/life.mjs";
 import {Universe, Cell } from "./wasm/life.mjs";
 
-const CELL_SIZE = 20;
+const CELL_SIZE = 10;
 const GRID_COLOR = "#CCCCCC";
 const DEAD_COLOR = "#FFFFFF";
 const ALIVE_COLOR = "#000000";
