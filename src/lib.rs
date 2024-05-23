@@ -87,7 +87,7 @@ impl Universe {
         }
     }
 
-    fn get_pos(&mut self, i: usize, j: usize) -> usize {
+    fn get_pos(&self, i: usize, j: usize) -> usize {
         i * self.width + j
     }
 }
