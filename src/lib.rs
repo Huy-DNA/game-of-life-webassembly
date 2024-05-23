@@ -36,6 +36,44 @@ impl Universe {
     }
     
     pub fn tick(&mut self) {
+        for i in 0..self.width {
+            for j in 0..self.height {
+                let pos = self.get_pos(i, j);
+                self.cells[pos] = self.next_status(i, j);        
+            }
+        }
+    }
+
+    fn cur_status(&mut self, i: usize, j: usize) -> Cell {
+        let pos = self.get_pos(i, j);
+        self.cells[pos]
+    }
+
+    fn next_status(&mut self, i: usize, j: usize) -> Cell {
+        let status = self.cur_status(i, j);
+        let num_alive = vec![
+            i > 0 && self.cur_status(i - 1, j) == Cell::Alive,
+            i < self.width && self.cur_status(i + 1, j) == Cell::Alive,
+            j > 0 && self.cur_status(i, j - 1) == Cell::Alive,
+            j < self.height && self.cur_status(i, j + 1) == Cell::Alive,
+        ].into_iter().map(|b| b as u8).sum::<u8>();
+        
+        match status {
+            Cell::Alive => {
+                if vec![2, 3].contains(&num_alive) {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                }
+            },
+            Cell::Dead => {
+                if num_alive == 3 {
+                    Cell::Alive
+                } else {
+                    Cell::Dead
+                }
+            },
+        }
     }
     
     pub fn toggle(&mut self, i: usize, j: usize) {
@@ -44,8 +82,12 @@ impl Universe {
         } else if j >= self.height {
            console::log_1(&format!("Invalid height: {j}").into());
         } else {
-            let pos = i * self.height + j;
+            let pos = self.get_pos(i, j);
             self.cells[pos].toggle();
         }
+    }
+
+    fn get_pos(&mut self, i: usize, j: usize) -> usize {
+        i * self.height + j
     }
 }
