@@ -1,4 +1,7 @@
+import wasm from "./wasm/life.mjs";
 import { Universe, Cell } from "./wasm/life.mjs";
+
+await wasm();
 
 const CELL_SIZE = 5;
 const GRID_COLOR = "#CCCCCC";
