@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "build": "wasm-pack build",
+    "build": "wasm-pack build --target web",
     "start": "http-server"
   },
   "author": "",
