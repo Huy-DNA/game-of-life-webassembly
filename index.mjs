@@ -1,7 +1,7 @@
 import wasm from "./wasm/life.mjs";
 import { Universe } from "./wasm/life.mjs";
 
-const CELL_SIZE = 10;
+const CELL_SIZE = 20;
 const GRID_COLOR = "#CCCCCC";
 const DEAD_COLOR = "#FFFFFF";
 const ALIVE_COLOR = "#000000";
@@ -10,8 +10,8 @@ const height = 64;
 const width = 64;
 
 const canvas = document.getElementById("life-canvas");
-canvas.height = height;
-canvas.width = width;
+canvas.height = height * (CELL_SIZE + 1);
+canvas.width = width * (CELL_SIZE + 1);
 
 const ctx = canvas.getContext("2d");
 let universe;
