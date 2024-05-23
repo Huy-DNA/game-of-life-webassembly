@@ -1,5 +1,5 @@
 import wasm from "./wasm/life.mjs";
-import { Universe, Cell } from "./wasm/life.mjs";
+import { Universe } from "./wasm/life.mjs";
 
 const CELL_SIZE = 10;
 const GRID_COLOR = "#CCCCCC";
@@ -52,8 +52,7 @@ function renderCells() {
 
   for (let row = 0; row < height; ++row) {
     for (let col = 0; col < width; ++col) {
-      console.log(row, col);
-      ctx.fillStyle = ALIVE_COLOR;
+      ctx.fillStyle = universe.is_dead(row, col) ? DEAD_COLOR : ALIVE_COLOR;
 
       ctx.fillRect(
         col * (CELL_SIZE + 1) + 1,
