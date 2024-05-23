@@ -10,10 +10,12 @@ const height = 64;
 const width = 64;
 
 const canvas = document.getElementById("life-canvas");
+const button = document.getElementById("button");
 canvas.height = height * (CELL_SIZE + 1);
 canvas.width = width * (CELL_SIZE + 1);
 
 const ctx = canvas.getContext("2d");
+let paused = true;
 let universe;
 let memory;
 
@@ -28,8 +30,10 @@ async function main() {
 function renderLoop(universe) {
   renderGrid();
   renderCells();
+  if (!paused) {
+    universe.tick();
+  }
   requestAnimationFrame(() => renderLoop(universe));
-  universe.tick();
 };
 
 function renderGrid() {
@@ -84,6 +88,11 @@ canvas.addEventListener("mousedown", (event) => {
   const row = Math.floor((y - 1) / (CELL_SIZE + 1));
 
   universe.toggle(row, col);
+});
+
+button.addEventListener("click", () => { 
+  button.textContent = paused ? "Stop" : "Play";
+  paused = !paused;
 });
 
 main();
