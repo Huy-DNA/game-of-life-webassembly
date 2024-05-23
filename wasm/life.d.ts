@@ -20,11 +20,9 @@ export class Universe {
 */
   tick(): void;
 /**
-* @param {number} i
-* @param {number} j
-* @returns {boolean}
+* @returns {number}
 */
-  is_dead(i: number, j: number): boolean;
+  cells(): number;
 /**
 * @param {number} i
 * @param {number} j
@@ -39,7 +37,7 @@ export interface InitOutput {
   readonly __wbg_universe_free: (a: number) => void;
   readonly universe_new: (a: number, b: number) => number;
   readonly universe_tick: (a: number) => void;
-  readonly universe_is_dead: (a: number, b: number, c: number) => number;
+  readonly universe_cells: (a: number) => number;
   readonly universe_toggle: (a: number, b: number, c: number) => void;
 }
 

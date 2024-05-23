@@ -91,13 +91,11 @@ export class Universe {
         wasm.universe_tick(this.__wbg_ptr);
     }
     /**
-    * @param {number} i
-    * @param {number} j
-    * @returns {boolean}
+    * @returns {number}
     */
-    is_dead(i, j) {
-        const ret = wasm.universe_is_dead(this.__wbg_ptr, i, j);
-        return ret !== 0;
+    cells() {
+        const ret = wasm.universe_cells(this.__wbg_ptr);
+        return ret >>> 0;
     }
     /**
     * @param {number} i

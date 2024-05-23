@@ -49,8 +49,8 @@ impl Universe {
         self.cells[pos]
     }
 
-    pub fn is_dead(&mut self, i: usize, j: usize) -> bool {
-        self.cur_status(i, j) == Cell::Dead
+    pub fn cells(&mut self) -> *const Cell {
+        self.cells.as_ptr()
     }
 
     fn next_status(&mut self, i: usize, j: usize) -> Cell {
