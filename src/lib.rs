@@ -77,9 +77,9 @@ impl Universe {
     }
     
     pub fn toggle(&mut self, i: usize, j: usize) {
-        if i >= self.width {
+        if i >= self.height {
            console::log_1(&format!("Invalid width: {i}").into());
-        } else if j >= self.height {
+        } else if j >= self.width {
            console::log_1(&format!("Invalid height: {j}").into());
         } else {
             let pos = self.get_pos(i, j);
@@ -88,6 +88,6 @@ impl Universe {
     }
 
     fn get_pos(&mut self, i: usize, j: usize) -> usize {
-        i * self.height + j
+        i * self.width + j
     }
 }
