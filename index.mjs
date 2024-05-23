@@ -1,8 +1,6 @@
 import wasm from "./wasm/life.mjs";
 import { Universe, Cell } from "./wasm/life.mjs";
 
-await wasm();
-
 const CELL_SIZE = 10;
 const GRID_COLOR = "#CCCCCC";
 const DEAD_COLOR = "#FFFFFF";
@@ -16,17 +14,22 @@ canvas.height = height;
 canvas.width = width;
 
 const ctx = canvas.getContext("2d");
+let universe;
 
-const universe = Universe.new();
+async function main() {
+  await wasm();
+  universe = Universe.new();
+  renderLoop(universe);
+}
 
-const renderLoop = () => {
+function renderLoop(universe) {
   renderGrid();
   renderCells();
-  requestAnimationFrame(renderLoop);
+  requestAnimationFrame(() => renderLoop(universe));
   universe.tick();
 };
 
-const renderGrid = () => {
+function renderGrid() {
   ctx.beginPath();
 
   ctx.strokeStyle = GRID_COLOR;
@@ -44,7 +47,7 @@ const renderGrid = () => {
   ctx.stroke();
 };
 
-const renderCells = () => {
+function renderCells() {
   ctx.beginPath();
 
   for (let row = 0; row < height; row++) {
@@ -63,4 +66,4 @@ const renderCells = () => {
   ctx.stroke();
 };
 
-renderLoop();
+main();
